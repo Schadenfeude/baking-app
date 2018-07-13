@@ -1,6 +1,7 @@
 package com.itrided.android.bakerstreet;
 
 import android.arch.lifecycle.ViewModelProviders;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
@@ -45,10 +46,10 @@ public class RecipeListActivity extends AppCompatActivity {
 
     private void setupAdapter() {
         final RecipeListener recipeListener = recipe -> {
-//            final Intent startDetailsIntent = new Intent(this, DetailActivity.class);
-//            startDetailsIntent.putExtra(DetailActivity.EXTRA_MOVIE, recipe);
-//
-//            startActivityForResult(startDetailsIntent, REQUEST_DETAILS);
+            final Intent startRecipesIntent = new Intent(this, RecipeActivity.class);
+            startRecipesIntent.putExtra(RecipeActivity.EXTRA_RECIPE, recipe);
+
+            startActivity(startRecipesIntent);
         };
 
         recipeListAdapter = new RecipeListAdapter(recipeListener);
