@@ -4,10 +4,10 @@ import com.itrided.android.bakerstreet.data.model.Recipe;
 
 import java.util.List;
 
-import io.reactivex.Observable;
+import io.reactivex.Single;
 import retrofit2.http.GET;
 
 public interface RecipeService {
     @GET("baking.json")
-    Observable<List<Recipe>> getRecipes();
+    Single<List<Recipe>> getRecipes();
 }

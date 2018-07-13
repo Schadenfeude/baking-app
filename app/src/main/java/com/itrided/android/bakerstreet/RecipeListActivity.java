@@ -1,65 +1,57 @@
 package com.itrided.android.bakerstreet;
 
+import android.arch.lifecycle.ViewModelProviders;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
 
-import com.itrided.android.bakerstreet.data.model.Recipe;
-import com.itrided.android.bakerstreet.data.service.RecipeService;
-
-import java.util.ArrayList;
-import java.util.List;
+import com.itrided.android.bakerstreet.library.RecipeListAdapter;
+import com.itrided.android.bakerstreet.library.RecipeListViewModel;
+import com.itrided.android.bakerstreet.library.RecipeListener;
 
 import butterknife.BindView;
-import io.reactivex.android.schedulers.AndroidSchedulers;
-import io.reactivex.disposables.CompositeDisposable;
-import io.reactivex.observers.DisposableObserver;
+import butterknife.ButterKnife;
 
 public class RecipeListActivity extends AppCompatActivity {
 
     @BindView(R.id.recipes_rv)
-    RecyclerView recipiesRv;
+    RecyclerView recipesRv;
 
-    private final RecipeService recipeService = BakerStreetApp.getRecipeService();
-    private final CompositeDisposable compositeDisposable = new CompositeDisposable();
+    private RecipeListViewModel recipeListViewModel;
+    private RecipeListAdapter recipeListAdapter;
 
     //region API Methods
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_recipe_list);
+        ButterKnife.bind(this);
 
-        final ArrayList<Recipe> recipes = new ArrayList<>();
-
-        compositeDisposable.add(
-                recipeService.getRecipes()
-                        .observeOn(AndroidSchedulers.mainThread())
-                        .subscribeWith(new DisposableObserver<List<Recipe>>() {
-                            @Override
-                            public void onNext(List<Recipe> results) {
-                                if (results.size() == 0)
-                                    return;
-
-                                recipes.addAll(results);
-                            }
-
-                            @Override
-                            public void onError(Throwable e) {
-                                e.printStackTrace();
-                            }
-
-                            @Override
-                            public void onComplete() {
-
-                            }
-                        }));
-    }
-
-    @Override
-    protected void onDestroy() {
-
-        super.onDestroy();
+        setupViewModel();
+        setupAdapter();
     }
 
     //endregion API Methods
+    private void setupViewModel() {
+        recipeListViewModel = ViewModelProviders.of(this).get(RecipeListViewModel.class);
+        recipeListViewModel.getRecipes().observe(this, (recipes -> {
+            if (recipeListAdapter == null) {
+                return;
+            }
+
+            recipeListAdapter.setRecipes(recipes);
+        }));
+    }
+
+    private void setupAdapter() {
+        final RecipeListener recipeListener = recipe -> {
+//            final Intent startDetailsIntent = new Intent(this, DetailActivity.class);
+//            startDetailsIntent.putExtra(DetailActivity.EXTRA_MOVIE, recipe);
+//
+//            startActivityForResult(startDetailsIntent, REQUEST_DETAILS);
+        };
+
+        recipeListAdapter = new RecipeListAdapter(recipeListener);
+        recipesRv.setAdapter(recipeListAdapter);
+    }
 }

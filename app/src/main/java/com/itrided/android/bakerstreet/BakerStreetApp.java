@@ -21,6 +21,14 @@ public class BakerStreetApp extends Application {
     public void onCreate() {
         super.onCreate();
 
+        recipeService = createRecipeService();
+    }
+
+    public static RecipeService getRecipeService() {
+        return recipeService;
+    }
+
+    private RecipeService createRecipeService() {
         final Gson gson = new GsonBuilder().excludeFieldsWithoutExposeAnnotation().create();
         final Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(RECIPE_SERVICE_BASE_URL)
@@ -28,10 +36,6 @@ public class BakerStreetApp extends Application {
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.createWithScheduler(Schedulers.io()))
                 .build();
 
-        recipeService = retrofit.create(RecipeService.class);
-    }
-
-    public static RecipeService getRecipeService() {
-        return recipeService;
+        return retrofit.create(RecipeService.class);
     }
 }
