@@ -2,6 +2,7 @@ package com.itrided.android.bakerstreet.recipe;
 
 import android.content.Context;
 import android.content.res.Resources;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -15,8 +16,8 @@ import com.itrided.android.bakerstreet.recipe.step.StepsFragment;
 
 public class RecipePagerAdapter extends FragmentStatePagerAdapter {
 
-    public static final int STEPS_FRAGMENT_POSITION = 0;
-    public static final int INGREDIENTS_FRAGMENT_POSITION = 1;
+    private static final int STEPS_FRAGMENT_POSITION = 0;
+    private static final int INGREDIENTS_FRAGMENT_POSITION = 1;
 
     private final Context context;
     private SparseArray<Fragment> fragments = new SparseArray<>();
@@ -55,6 +56,7 @@ public class RecipePagerAdapter extends FragmentStatePagerAdapter {
         }
     }
 
+    @NonNull
     @Override
     public Object instantiateItem(ViewGroup container, int position) {
         Fragment fragment = (Fragment) super.instantiateItem(container, position);

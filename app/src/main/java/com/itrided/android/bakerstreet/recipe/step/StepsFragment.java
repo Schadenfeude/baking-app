@@ -37,7 +37,7 @@ public class StepsFragment extends Fragment {
         super.onCreate(savedInstanceState);
         setRetainInstance(true);
 
-        recipeViewModel = ViewModelProviders.of(this).get(RecipeViewModel.class);
+        recipeViewModel = ViewModelProviders.of(getActivity()).get(RecipeViewModel.class);
 //        stepsListViewModel = ViewModelProviders.of(this).get(StepsListViewModel.class);
 //        if (getActivity().getResources().getBoolean(R.bool.is_tablet)) {
 //            stepsListViewModel.getObservableCurrentStep().observe(this, step -> {
@@ -52,7 +52,7 @@ public class StepsFragment extends Fragment {
 //            if (adapter == null)
 //                return;
 //
-//            adapter.setItems(steps);
+//            adapter.setSteps(steps);
 //        });
     }
 
@@ -65,7 +65,7 @@ public class StepsFragment extends Fragment {
         binding.stepsRv.setLayoutManager(new LinearLayoutManager(getActivity().getApplicationContext(),
                 LinearLayoutManager.VERTICAL, false));
 
-        adapter = new StepAdapter(recipeViewModel.getStepsValue(), this);
+        adapter = new StepAdapter(recipeViewModel.getStepsValue());
         binding.stepsRv.setAdapter(adapter);
         binding.stepsRv.addItemDecoration(new DividerItemDecoration(binding.stepsRv.getContext(),
                 LinearLayoutManager.VERTICAL));

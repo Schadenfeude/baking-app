@@ -57,7 +57,7 @@ public class RecipeListAdapter extends RecyclerView.Adapter<RecipeListAdapter.Re
 
     static class RecipeListViewHolder extends RecyclerView.ViewHolder {
         @BindView(R.id.thumbnail_iv)
-        ImageView thumbnalIv;
+        ImageView thumbnailIv;
         @BindView(R.id.name_tv)
         TextView nameTv;
 
