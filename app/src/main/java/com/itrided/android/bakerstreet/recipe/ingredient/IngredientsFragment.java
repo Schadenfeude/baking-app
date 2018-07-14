@@ -2,6 +2,7 @@ package com.itrided.android.bakerstreet.recipe.ingredient;
 
 import android.arch.lifecycle.ViewModelProviders;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
@@ -35,7 +36,8 @@ public class IngredientsFragment extends Fragment {
         super.onCreate(savedInstanceState);
         setRetainInstance(true);
 
-        recipeViewModel = ViewModelProviders.of(this).get(RecipeViewModel.class);
+        // get the Recipe from the Activity
+        recipeViewModel = ViewModelProviders.of(getActivity()).get(RecipeViewModel.class);
         recipeViewModel.getIngredients().observe(this, ingredients -> {
             if (ingredientAdapter == null)
                 return;
@@ -44,12 +46,12 @@ public class IngredientsFragment extends Fragment {
         });
     }
 
-
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         binding = FragmentIngredientsBinding.inflate(inflater, container, false);
 
+        // update the Recipe when a new View is created
         ingredientAdapter = new IngredientAdapter(recipeViewModel.getIngredientsValue());
         binding.ingredientsRv.setAdapter(ingredientAdapter);
         binding.ingredientsRv.addItemDecoration(new DividerItemDecoration(binding.ingredientsRv.getContext(),

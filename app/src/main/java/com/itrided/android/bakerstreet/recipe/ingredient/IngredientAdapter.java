@@ -2,44 +2,41 @@ package com.itrided.android.bakerstreet.recipe.ingredient;
 
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
-import android.view.View;
+import android.view.LayoutInflater;
 import android.view.ViewGroup;
-import android.widget.ImageView;
-import android.widget.TextView;
 
-import com.itrided.android.bakerstreet.R;
 import com.itrided.android.bakerstreet.data.model.Ingredient;
-import com.itrided.android.bakerstreet.data.model.Recipe;
-import com.itrided.android.bakerstreet.library.RecipeListener;
+import com.itrided.android.bakerstreet.databinding.ItemIngredientBinding;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import butterknife.BindView;
-import butterknife.ButterKnife;
-
 public class IngredientAdapter extends RecyclerView.Adapter<IngredientAdapter.IngredientViewHolder> {
 
-    private final ArrayList<Ingredient> ingredients = new ArrayList<>();
+    private ArrayList<Ingredient> ingredients;
 
     public IngredientAdapter(List<Ingredient> ingredientsValue) {
-
+        ingredients = new ArrayList<>(ingredientsValue.size());
+        ingredients.addAll(ingredientsValue);
     }
 
     @NonNull
     @Override
-    public IngredientViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
-        return null;
+    public IngredientViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int position) {
+        final LayoutInflater layoutInflater = LayoutInflater.from(viewGroup.getContext());
+        final ItemIngredientBinding binding = ItemIngredientBinding.inflate(layoutInflater, viewGroup, false);
+
+        return new IngredientAdapter.IngredientViewHolder(binding);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull IngredientViewHolder ingredientViewHolder, int i) {
-
+    public void onBindViewHolder(@NonNull IngredientViewHolder ingredientViewHolder, int position) {
+        ingredientViewHolder.bind(ingredients.get(position));
     }
 
     @Override
     public int getItemCount() {
-        return 0;
+        return ingredients.size();
     }
 
     public void setItems(List<Ingredient> ingredientList) {
@@ -48,20 +45,17 @@ public class IngredientAdapter extends RecyclerView.Adapter<IngredientAdapter.In
     }
 
     static class IngredientViewHolder extends RecyclerView.ViewHolder {
-        @BindView(R.id.thumbnail_iv)
-        ImageView thumbnalIv;
-        @BindView(R.id.name_tv)
-        TextView nameTv;
+        private ItemIngredientBinding binding;
 
-        IngredientViewHolder(View itemView) {
-            super(itemView);
-            ButterKnife.bind(this, itemView);
+        IngredientViewHolder(ItemIngredientBinding binding) {
+            super(binding.getRoot());
+            this.binding = binding;
         }
 
-        void bind(@NonNull Recipe recipe, @NonNull RecipeListener clickListener) {
-            nameTv.setText(recipe.getName());
-//            loadPoster(recipe.getImage());
-            itemView.setOnClickListener(v -> clickListener.openRecipe(recipe));
+        void bind(@NonNull Ingredient ingredient) {
+            final String amount = ingredient.getQuantity() + " " + ingredient.getMeasure();
+            binding.ingredientNameTv.setText(ingredient.getName());
+            binding.ingredientAmountTv.setText(amount);
         }
     }
 }
