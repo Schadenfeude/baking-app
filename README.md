@@ -5,7 +5,7 @@ An app that gives you a step-by-step explanation on how to cook certain foods.
 ### General App Usage
  - [x] App is written solely in the Java Programming Language.
  - [x] App utilizes stable release versions of all libraries, Gradle, and Android Studio.
- - [ ] App should display recipes from provided network resource.
+ - [x] App should display recipes from provided network resource.
  - [ ] App should allow navigation between individual recipes and recipe steps.
  - [ ] App uses RecyclerView and can handle recipe steps that include videos or images.
  - [ ] App conforms to common standards found in the Android Nanodegree General Project Guidelines.

@@ -38,8 +38,8 @@ public class RecipeActivity extends AppCompatActivity {
 
     private void setupAdapter() {
         recipePagerAdapter = new RecipePagerAdapter(this, getSupportFragmentManager());
-//        binding.viewpager.setAdapter(recipePagerAdapter);
-//        binding.slidingTl.setupWithViewPager(binding.viewpager);
+        binding.viewpager.setAdapter(recipePagerAdapter);
+        binding.slidingTl.setupWithViewPager(binding.viewpager);
     }
 
     private void setupViewModel() {

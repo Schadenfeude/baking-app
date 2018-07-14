@@ -3,4 +3,6 @@
     <dimen name="vertical_margin">16dp</dimen>
     <dimen name="horizontal_margin">16dp</dimen>
     <dimen name="recipe_detail_toolbar_height">190dp</dimen>
+    <dimen name="item_text_accent">16sp</dimen>
+    <dimen name="item_text_secondary">14sp</dimen>
 </resources>
