@@ -25,6 +25,11 @@ public class RecipeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         binding = DataBindingUtil.setContentView(this, R.layout.activity_recipe);
 
+        if (!getIntent().hasExtra(EXTRA_RECIPE)) {
+            finish();
+            return;
+        }
+
         setupToolbar();
         setupViewModel();
         setupAdapter();

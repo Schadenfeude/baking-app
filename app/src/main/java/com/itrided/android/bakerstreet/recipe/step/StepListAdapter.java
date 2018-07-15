@@ -11,12 +11,15 @@ import com.itrided.android.bakerstreet.databinding.ItemStepBinding;
 import java.util.ArrayList;
 import java.util.List;
 
-public class StepAdapter extends RecyclerView.Adapter<StepAdapter.StepViewHolder> {
-    private List<Step> steps;
+public class StepListAdapter extends RecyclerView.Adapter<StepListAdapter.StepViewHolder> {
 
-    public StepAdapter(List<Step> stepList) {
+    private List<Step> steps;
+    private StepClickListener listener;
+
+    public StepListAdapter(List<Step> stepList, StepClickListener clickListener) {
         steps = new ArrayList<>(stepList.size());
         steps.addAll(stepList);
+        listener = clickListener;
     }
 
     @NonNull
@@ -31,7 +34,7 @@ public class StepAdapter extends RecyclerView.Adapter<StepAdapter.StepViewHolder
     @Override
     public void onBindViewHolder(@NonNull StepViewHolder stepViewHolder, int position) {
         final String stepNumber = String.valueOf(position + 1);
-        stepViewHolder.bind(steps.get(position), stepNumber);
+        stepViewHolder.bind(steps.get(position), stepNumber, listener);
     }
 
     @Override
@@ -52,7 +55,8 @@ public class StepAdapter extends RecyclerView.Adapter<StepAdapter.StepViewHolder
             this.binding = binding;
         }
 
-        void bind(@NonNull Step step, String stepNumber) {
+        void bind(@NonNull Step step, String stepNumber, StepClickListener listener) {
+            binding.getRoot().setOnClickListener(view -> listener.openStep(step));
             binding.stepNumberTv.setText(stepNumber);
             binding.stepNameTv.setText(step.getShortDescription());
         }

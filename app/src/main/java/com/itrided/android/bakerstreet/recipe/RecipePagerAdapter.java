@@ -12,7 +12,7 @@ import android.view.ViewGroup;
 
 import com.itrided.android.bakerstreet.R;
 import com.itrided.android.bakerstreet.recipe.ingredient.IngredientsFragment;
-import com.itrided.android.bakerstreet.recipe.step.StepsFragment;
+import com.itrided.android.bakerstreet.recipe.step.StepsListFragment;
 
 public class RecipePagerAdapter extends FragmentStatePagerAdapter {
 
@@ -29,9 +29,9 @@ public class RecipePagerAdapter extends FragmentStatePagerAdapter {
     }
 
     @Override
-    public Fragment getItem(int i) {
-        if (STEPS_FRAGMENT_POSITION == i) {
-            return StepsFragment.getInstance();
+    public Fragment getItem(int position) {
+        if (STEPS_FRAGMENT_POSITION == position) {
+            return StepsListFragment.getInstance();
         } else {
             return IngredientsFragment.getInstance();
         }

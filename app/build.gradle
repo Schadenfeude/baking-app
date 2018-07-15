@@ -67,14 +67,16 @@ dependencies {
     implementation "com.squareup.picasso:picasso:$rootProject.picassoVersion"
     implementation 'com.jakewharton:disklrucache:2.0.2'
     implementation 'com.stepstone.stepper:material-stepper:4.3.1'
+
+    // ExoPlayer
     implementation 'com.google.android.exoplayer:exoplayer:2.7.1'
 
     // Test Libraries
     testImplementation 'junit:junit:4.12'
+    androidTestImplementation "org.mockito:mockito-core:2.19.1"
+    androidTestImplementation 'com.android.support.test:rules:1.0.2'
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
-    androidTestImplementation 'com.android.support.test:rules:1.0.2'
-    androidTestImplementation "org.mockito:mockito-core:2.+"
     androidTestImplementation('com.android.support.test.espresso:espresso-contrib:2.0') {
         exclude group: 'com.android.support', module: 'appcompat'
         exclude group: 'com.android.support', module: 'support-v4'
