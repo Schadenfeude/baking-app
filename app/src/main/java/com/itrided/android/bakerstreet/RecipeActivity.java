@@ -15,8 +15,7 @@ import com.itrided.android.bakerstreet.recipe.RecipeViewModel;
 public class RecipeActivity extends AppCompatActivity {
     public static final String EXTRA_RECIPE = "EXTRA_RECIPE";
 
-    ActivityRecipeBinding binding;
-
+    private ActivityRecipeBinding binding;
     private RecipeViewModel recipeViewModel;
     private RecipePagerAdapter recipePagerAdapter;
 

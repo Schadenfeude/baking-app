@@ -56,7 +56,7 @@ public class StepListAdapter extends RecyclerView.Adapter<StepListAdapter.StepVi
         }
 
         void bind(@NonNull Step step, String stepNumber, StepClickListener listener) {
-            binding.getRoot().setOnClickListener(view -> listener.openStep(step));
+            itemView.setOnClickListener(view -> listener.openStep(step));
             binding.stepNumberTv.setText(stepNumber);
             binding.stepNameTv.setText(step.getShortDescription());
         }

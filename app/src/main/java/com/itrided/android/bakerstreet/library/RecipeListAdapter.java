@@ -1,21 +1,18 @@
 package com.itrided.android.bakerstreet.library;
 
+import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
-import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
-import android.widget.TextView;
 
 import com.itrided.android.bakerstreet.R;
 import com.itrided.android.bakerstreet.data.model.Recipe;
+import com.itrided.android.bakerstreet.databinding.ItemRecipeListBinding;
+import com.squareup.picasso.Picasso;
 
 import java.util.List;
-
-import butterknife.BindView;
-import butterknife.ButterKnife;
 
 public class RecipeListAdapter extends RecyclerView.Adapter<RecipeListAdapter.RecipeListViewHolder> {
     private List<Recipe> recipes;
@@ -34,9 +31,9 @@ public class RecipeListAdapter extends RecyclerView.Adapter<RecipeListAdapter.Re
     @Override
     public RecipeListViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
         final LayoutInflater layoutInflater = LayoutInflater.from(viewGroup.getContext());
-        final View view = layoutInflater.inflate(R.layout.item_recipe_list, null);
+        final ItemRecipeListBinding binding = ItemRecipeListBinding.inflate(layoutInflater, viewGroup, false);
 
-        return new RecipeListViewHolder(view);
+        return new RecipeListViewHolder(binding);
     }
 
     @Override
@@ -56,30 +53,30 @@ public class RecipeListAdapter extends RecyclerView.Adapter<RecipeListAdapter.Re
     }
 
     static class RecipeListViewHolder extends RecyclerView.ViewHolder {
-        @BindView(R.id.thumbnail_iv)
-        ImageView thumbnailIv;
-        @BindView(R.id.name_tv)
-        TextView nameTv;
+        private ItemRecipeListBinding binding;
 
-        RecipeListViewHolder(View itemView) {
-            super(itemView);
-            ButterKnife.bind(this, itemView);
+        RecipeListViewHolder(ItemRecipeListBinding binding) {
+            super(binding.getRoot());
+            this.binding = binding;
         }
 
         void bind(@NonNull Recipe recipe, @NonNull RecipeListener clickListener) {
-            nameTv.setText(recipe.getName());
-//            loadPoster(recipe.getImage());
+            binding.nameTv.setText(recipe.getName());
+            loadPoster(recipe.getImage());
             itemView.setOnClickListener(v -> clickListener.openRecipe(recipe));
         }
 
-//        private void loadPoster(@Nullable String imageUrl) {
-//            if (imageUrl == null || imageUrl.isEmpty()) {
-//                return;
-//            }
-//            final Context context = itemView.getContext();
-//
-//            ImageLoader.getInstance(context)
-//                    .loadImageIntoTarget(imageUrl, posterIv);
-//        }
+        private void loadPoster(@Nullable String imageUrl) {
+            if (imageUrl == null || imageUrl.isEmpty()) {
+                return;
+            }
+            final Context context = itemView.getContext();
+
+            Picasso.with(context)
+                    .load(imageUrl)
+                    .placeholder(R.drawable.ic_cake)
+                    .error(R.drawable.ic_cake)
+                    .into(binding.thumbnailIv);
+        }
     }
 }
