@@ -3,4 +3,7 @@
     <string name="tab_title_ingredients">Ingredients</string>
     <string name="tab_title_steps">Steps</string>
     <string name="placeholder_string">Never Settle</string>
+
+    <string name="widget_recipe_title">Ingredients for %1$s</string>
+    <string name="widget_ingredient_item_text">%1$s\n%2$s %3$s</string>
 </resources>

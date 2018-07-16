@@ -22,5 +22,5 @@ An app that gives you a step-by-step explanation on how to cook certain foods.
  a UI binding library to avoid writing findViewById a bunch of times, or something similar.
  
 ### Homescreen Widget
- - [ ] Application has a companion homescreen widget.
+ - [x] Application has a companion homescreen widget.
  - [ ] Widget displays ingredient list for desired recipe.
