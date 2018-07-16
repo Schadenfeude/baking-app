@@ -14,9 +14,9 @@ An app that gives you a step-by-step explanation on how to cook certain foods.
  - [ ] Application uses Master Detail Flow to display recipe steps and navigation between them.
  - [x] Application uses ExoPlayer to display videos.
  - [x] Application properly initializes and releases video assets when appropriate.
- - [ ] Application should properly retrieve media assets from the provided network links. 
+ - [x] Application should properly retrieve media assets from the provided network links. 
  It should properly handle network requests.
- - [ ] Application makes use of Espresso to test aspects of the UI.
+ - [x] Application makes use of Espresso to test aspects of the UI.
  - [x] Application sensibly utilizes a third-party library to enhance the app's features. 
  That could be helper library to interface with ContentProviders if you choose to store the recipes, 
  a UI binding library to avoid writing findViewById a bunch of times, or something similar.

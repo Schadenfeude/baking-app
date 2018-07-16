@@ -5,6 +5,7 @@ import com.google.gson.annotations.SerializedName;
 
 import android.os.Parcel;
 import android.os.Parcelable;
+import android.support.annotation.VisibleForTesting;
 
 public class Ingredient implements Parcelable {
 
@@ -19,6 +20,12 @@ public class Ingredient implements Parcelable {
     @SerializedName("ingredient")
     @Expose
     private String name;
+
+    public Ingredient(double quantity, String measure, String name) {
+        this.quantity = quantity;
+        this.measure = measure;
+        this.name = name;
+    }
 
     protected Ingredient(Parcel in) {
         quantity = in.readDouble();

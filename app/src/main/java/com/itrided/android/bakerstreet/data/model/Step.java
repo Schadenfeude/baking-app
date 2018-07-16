@@ -5,6 +5,7 @@ import com.google.gson.annotations.SerializedName;
 
 import android.os.Parcel;
 import android.os.Parcelable;
+import android.support.annotation.VisibleForTesting;
 
 public class Step implements Parcelable {
 
@@ -27,6 +28,14 @@ public class Step implements Parcelable {
     @SerializedName("thumbnailURL")
     @Expose
     private String thumbnailURL;
+
+    public Step(int id, String shortDescription, String description, String videoURL, String thumbnailURL) {
+        this.id = id;
+        this.shortDescription = shortDescription;
+        this.description = description;
+        this.videoURL = videoURL;
+        this.thumbnailURL = thumbnailURL;
+    }
 
     protected Step(Parcel in) {
         id = in.readInt();
