@@ -17,8 +17,9 @@ public class RecipeListViewModel extends ViewModel {
 
     private final RecipeService recipeService = BakerStreetApp.getRecipeService();
     private final CompositeDisposable compositeDisposable = new CompositeDisposable();
-
     private final MutableLiveData<List<Recipe>> recipes = new MutableLiveData<>();
+
+    private String requestedRecipeFromWidget;
 
     public RecipeListViewModel() {
         loadRecipes();
@@ -57,7 +58,11 @@ public class RecipeListViewModel extends ViewModel {
         return recipes;
     }
 
-    public void setRecipes(List<Recipe> recipes) {
-        this.recipes.setValue(recipes);
+    public void setRequestedRecipeFromWidget(String requestedRecipeFromWidget) {
+        this.requestedRecipeFromWidget = requestedRecipeFromWidget;
+    }
+
+    public String getRequestedRecipeFromWidget() {
+        return requestedRecipeFromWidget;
     }
 }

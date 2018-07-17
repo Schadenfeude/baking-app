@@ -6,4 +6,6 @@
 
     <string name="widget_recipe_title">Ingredients for %1$s</string>
     <string name="widget_ingredient_item_text">%1$s\n%2$s %3$s</string>
+    <string name="widget_config_label">Choose a recipe to display.</string>
+    <string name="widget_config_confirm">Confirm</string>
 </resources>

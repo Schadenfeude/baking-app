@@ -42,6 +42,12 @@
                     android:value=".RecipeListActivity"/>
         </activity>
 
+        <activity android:name=".widget.RecipeIngredientsWidgetConfigureActivity">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_CONFIGURE"/>
+            </intent-filter>
+        </activity>
+
         <receiver android:name=".widget.RecipeIngredientsWidget">
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE"/>
@@ -49,7 +55,7 @@
 
             <meta-data
                     android:name="android.appwidget.provider"
-                    android:resource="@xml/widget_recipe_ingredients_info" />
+                    android:resource="@xml/widget_recipe_ingredients_info"/>
         </receiver>
 
         <service

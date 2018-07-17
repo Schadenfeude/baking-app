@@ -49,12 +49,12 @@ public class RecipeWidgetDataProvider implements RemoteViewsService.RemoteViewsF
     @Override
     public RemoteViews getViewAt(int position) {
         final RemoteViews remoteViews = new RemoteViews(context.getPackageName(), R.layout.item_widget_recipe_ingredient);
-        remoteViews.setTextViewText(R.id.ingredient_tv, ingredients.get(position));
-//        CharSequence recipeName = RecipeIngredientsWidgetConfigureActivity
-//                .loadRecipePreference(context, appWidgetId);
-        final CharSequence recipeName = "Brownies";
+        final CharSequence recipeName = RecipeIngredientsWidgetConfigureActivity
+                .loadRecipePreference(context, appWidgetId);
         final Intent intent = new Intent(context, RecipeListActivity.class);
+
         intent.putExtra(EXTRA_WIDGET_REQUESTED_RECIPE, recipeName);
+        remoteViews.setTextViewText(R.id.ingredient_tv, ingredients.get(position));
         remoteViews.setOnClickFillInIntent(R.id.ingredient_tv, intent);
 
         return remoteViews;

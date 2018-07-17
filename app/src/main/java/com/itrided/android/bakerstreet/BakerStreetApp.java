@@ -28,7 +28,7 @@ public class BakerStreetApp extends Application {
         return recipeService;
     }
 
-    private RecipeService createRecipeService() {
+    private static RecipeService createRecipeService() {
         final Gson gson = new GsonBuilder().excludeFieldsWithoutExposeAnnotation().create();
         final Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(RECIPE_SERVICE_BASE_URL)
