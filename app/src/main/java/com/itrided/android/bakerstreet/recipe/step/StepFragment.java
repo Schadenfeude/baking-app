@@ -66,7 +66,14 @@ public class StepFragment extends Fragment implements BlockingStep {
                              @Nullable Bundle savedInstanceState) {
         binding = FragmentStepDetailsBinding.inflate(inflater, container, false);
         position = getArguments().getInt(EXTRA_STEP_POSITION, 0);
-        loadImageIntoView(stepListViewModel.getStepsValue().get(position).getThumbnailURL());
+
+        if (getResources().getBoolean(R.bool.is_landscape)) {
+            final String videoUrl = stepListViewModel.getStepsValue().get(position).getVideoURL();
+            binding.videoEpv.setVisibility(TextUtils.isEmpty(videoUrl) ? View.GONE : View.VISIBLE);
+            binding.descriptionTv.setVisibility(TextUtils.isEmpty(videoUrl) ? View.VISIBLE : View.GONE);
+        } else {
+            loadImageIntoView(stepListViewModel.getStepsValue().get(position).getThumbnailURL());
+        }
 
         return binding.getRoot();
     }

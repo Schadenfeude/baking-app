@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools">
+
+    <android.support.constraint.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        <android.support.constraint.Guideline
+                android:id="@+id/guideline"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_percent="0.40"/>
+
+        <android.support.design.widget.CoordinatorLayout
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:fitsSystemWindows="true"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/guideline"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+            <android.support.design.widget.AppBarLayout
+                    android:id="@+id/appbar"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="?attr/colorPrimary"
+                    android:fitsSystemWindows="true"
+                    android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
+
+                <android.support.design.widget.CollapsingToolbarLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:fitsSystemWindows="true"
+                        app:contentScrim="?attr/colorPrimary"
+                        app:layout_scrollFlags="scroll|exitUntilCollapsed">
+
+                    <ImageView
+                            android:id="@+id/recipe_poster_iv"
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/recipe_detail_toolbar_height"
+                            android:fitsSystemWindows="true"
+                            android:scaleType="centerInside"
+                            app:layout_collapseMode="parallax"
+                            app:srcCompat="@drawable/ic_cake"/>
+
+                    <android.support.v7.widget.Toolbar
+                            android:id="@+id/toolbar"
+                            android:layout_width="match_parent"
+                            android:layout_height="?attr/actionBarSize"
+                            app:layout_collapseMode="pin"
+                            app:popupTheme="@style/ThemeOverlay.AppCompat.Light"/>
+
+                </android.support.design.widget.CollapsingToolbarLayout>
+
+                <android.support.design.widget.TabLayout
+                        android:id="@+id/sliding_tl"
+                        android:layout_width="match_parent"
+                        android:layout_height="?attr/actionBarSize"
+                        android:layout_gravity="bottom"
+                        android:background="?attr/colorPrimary"
+                        app:tabGravity="fill"
+                        app:tabMode="fixed"/>
+            </android.support.design.widget.AppBarLayout>
+
+            <android.support.v4.view.ViewPager
+                    android:id="@+id/viewpager"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    app:layout_behavior="@string/appbar_scrolling_view_behavior"/>
+        </android.support.design.widget.CoordinatorLayout>
+
+        <com.stepstone.stepper.StepperLayout
+                android:id="@+id/step_fragment_container"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toEndOf="@id/guideline"
+                app:layout_constraintEnd_toEndOf="parent"
+                tools:listitem="@layout/fragment_step_details"
+                app:ms_stepperType="dots"
+                app:ms_bottomNavigationBackground="@color/colorPrimary"
+                app:ms_backButtonColor="@color/colorAccent"
+                app:ms_nextButtonColor="@color/colorAccent"
+                app:ms_completeButtonColor="@color/colorAccent"
+                app:ms_activeStepColor="@color/colorAccent"
+                app:ms_inactiveStepColor="@color/colorPrimaryLight">
+        </com.stepstone.stepper.StepperLayout>
+    </android.support.constraint.ConstraintLayout>
+</layout>

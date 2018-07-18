@@ -26,7 +26,7 @@
                     app:layout_scrollFlags="scroll|exitUntilCollapsed">
 
                 <ImageView
-                        android:id="@+id/recipe_poster"
+                        android:id="@+id/recipe_poster_iv"
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/recipe_detail_toolbar_height"
                         android:scaleType="centerInside"
@@ -56,6 +56,6 @@
                 android:id="@+id/viewpager"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                app:layout_behavior="android.support.design.widget.AppBarLayout$ScrollingViewBehavior"/>
+                app:layout_behavior="@string/appbar_scrolling_view_behavior"/>
     </android.support.design.widget.CoordinatorLayout>
 </layout>

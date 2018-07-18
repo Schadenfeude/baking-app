@@ -45,7 +45,10 @@ public class StepActivity extends AppCompatActivity {
             binding.stepFragmentContainer.setCurrentStepPosition(position);
         }
 
-        setTitle(steps.get(position).getShortDescription());
+        final boolean isLandscape = getResources().getBoolean(R.bool.is_landscape);
+        if (!isLandscape) {
+            setTitle(steps.get(position).getShortDescription());
+        }
     }
 }
 

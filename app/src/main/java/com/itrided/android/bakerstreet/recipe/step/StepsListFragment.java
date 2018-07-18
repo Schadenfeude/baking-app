@@ -10,6 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.itrided.android.bakerstreet.R;
 import com.itrided.android.bakerstreet.StepActivity;
 import com.itrided.android.bakerstreet.data.model.Step;
 import com.itrided.android.bakerstreet.databinding.FragmentStepListBinding;
@@ -26,6 +27,7 @@ public class StepsListFragment extends Fragment {
     private RecipeViewModel recipeViewModel;
     private StepListViewModel stepListViewModel;
     private StepListAdapter adapter;
+    private boolean isTablet;
 
     public StepsListFragment() {
     }
@@ -44,16 +46,18 @@ public class StepsListFragment extends Fragment {
         super.onCreate(savedInstanceState);
         setRetainInstance(true);
 
+        isTablet = getActivity().getResources().getBoolean(R.bool.is_tablet);
         recipeViewModel = ViewModelProviders.of(getActivity()).get(RecipeViewModel.class);
         stepListViewModel = ViewModelProviders.of(getActivity()).get(StepListViewModel.class);
-//        if (getActivity().getResources().getBoolean(R.bool.is_tablet)) {
-//            stepsListViewModel.getObservableCurrentStep().observe(this, step -> {
-//                if (recipeViewModel.getSteps() == null)
-//                    return;
-//
-//                resetSelectedStep(step);
-//            });
-//        }
+
+        if (isTablet) {
+            stepListViewModel.getCurrentStepPosition().observe(this, step -> {
+                if (recipeViewModel.getSteps() == null)
+                    return;
+
+                resetSelectedStep(step);
+            });
+        }
 
         recipeViewModel.getSteps().observe(this, (steps) -> {
             if (adapter == null)
@@ -85,17 +89,25 @@ public class StepsListFragment extends Fragment {
         return step -> {
             int position = step.getId();
 
-//            if (getActivity().getResources().getBoolean(R.bool.is_tablet)) {
-//                resetSelectedStep(position);
-//
-//            stepsListViewModel.setCurrentStepPosition(position);
-//                return;
-//            }
+            if (isTablet) {
+                resetSelectedStep(position);
+
+                stepListViewModel.setCurrentStepPosition(position);
+                return;
+            }
 
             final Intent intent = new Intent(getContext(), StepActivity.class);
             intent.putParcelableArrayListExtra(EXTRA_STEPS_LIST, (ArrayList<Step>) recipeViewModel.getStepsValue());
             intent.putExtra(EXTRA_STEP_POSITION, position);
             startActivity(intent);
         };
+    }
+
+    private void resetSelectedStep(int position) {
+        for (Step s : recipeViewModel.getStepsValue()) {
+            s.setSelected(false);
+        }
+        recipeViewModel.getStepsValue().get(position).setSelected(true);
+        adapter.notifyDataSetChanged();
     }
 }
