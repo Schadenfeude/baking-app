@@ -8,7 +8,7 @@ An app that gives you a step-by-step explanation on how to cook certain foods.
  - [x] App should display recipes from provided network resource.
  - [x] App should allow navigation between individual recipes and recipe steps.
  - [x] App uses RecyclerView and can handle recipe steps that include videos or images.
- - [ ] App conforms to common standards found in the Android Nanodegree General Project Guidelines.
+ - [x] App conforms to common standards found in the Android Nanodegree General Project Guidelines.
 
 ### Components and Libraries
  - [ ] Application uses Master Detail Flow to display recipe steps and navigation between them.
@@ -22,5 +22,5 @@ An app that gives you a step-by-step explanation on how to cook certain foods.
  a UI binding library to avoid writing findViewById a bunch of times, or something similar.
  
 ### Homescreen Widget
- - [x] Application has a companion homescreen widget.
- - [ ] Widget displays ingredient list for desired recipe.
+ - [x] Application has a companion home screen widget.
+ - [x] Widget displays ingredient list for desired recipe.
