@@ -40,6 +40,7 @@ public class IngredientAdapter extends RecyclerView.Adapter<IngredientAdapter.In
     }
 
     public void setItems(List<Ingredient> ingredientList) {
+        ingredients.clear();
         ingredients.addAll(ingredientList);
         notifyDataSetChanged();
     }

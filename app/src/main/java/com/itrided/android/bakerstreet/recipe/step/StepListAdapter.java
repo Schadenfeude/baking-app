@@ -43,6 +43,7 @@ public class StepListAdapter extends RecyclerView.Adapter<StepListAdapter.StepVi
     }
 
     public void setSteps(List<Step> steps) {
+        this.steps.clear();
         this.steps.addAll(steps);
         notifyDataSetChanged();
     }
