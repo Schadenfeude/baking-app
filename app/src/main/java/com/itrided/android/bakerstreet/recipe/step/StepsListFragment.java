@@ -88,7 +88,7 @@ public class StepsListFragment extends Fragment {
 //            if (getActivity().getResources().getBoolean(R.bool.is_tablet)) {
 //                resetSelectedStep(position);
 //
-//            stepsListViewModel.setCurrentStep(position);
+//            stepsListViewModel.setCurrentStepPosition(position);
 //                return;
 //            }
 

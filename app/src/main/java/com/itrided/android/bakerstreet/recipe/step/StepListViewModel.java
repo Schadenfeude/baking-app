@@ -9,7 +9,7 @@ import java.util.List;
 
 public class StepListViewModel extends ViewModel {
     private MutableLiveData<List<Step>> steps = new MutableLiveData<>();
-    private MutableLiveData<Integer> currentStep = new MutableLiveData<>();
+    private MutableLiveData<Integer> currentStepPosition = new MutableLiveData<>();
 
     public List<Step> getStepsValue() {
         return steps.getValue();
@@ -20,14 +20,14 @@ public class StepListViewModel extends ViewModel {
     }
 
     public Integer getCurrentStepValue() {
-        return currentStep.getValue();
+        return currentStepPosition.getValue();
     }
 
-    public void setCurrentStep(Integer currentStep) {
-        this.currentStep.setValue(currentStep);
+    public void setCurrentStepPosition(Integer currentStepPosition) {
+        this.currentStepPosition.setValue(currentStepPosition);
     }
 
-    public MutableLiveData<Integer> getCurrentStep() {
-        return currentStep;
+    public MutableLiveData<Integer> getCurrentStepPosition() {
+        return currentStepPosition;
     }
 }

@@ -62,11 +62,11 @@ public class RecipeListAdapter extends RecyclerView.Adapter<RecipeListAdapter.Re
 
         void bind(@NonNull Recipe recipe, @NonNull RecipeListener clickListener) {
             binding.nameTv.setText(recipe.getName());
-            loadPoster(recipe.getImage());
+            loadImageIntoView(recipe.getImage());
             itemView.setOnClickListener(v -> clickListener.openRecipe(recipe));
         }
 
-        private void loadPoster(@Nullable String imageUrl) {
+        private void loadImageIntoView(@Nullable String imageUrl) {
             if (imageUrl == null || imageUrl.isEmpty()) {
                 return;
             }

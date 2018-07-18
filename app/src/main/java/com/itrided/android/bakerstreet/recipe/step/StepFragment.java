@@ -15,6 +15,7 @@ import com.google.android.exoplayer2.upstream.BandwidthMeter;
 import com.google.android.exoplayer2.upstream.DefaultBandwidthMeter;
 
 import android.arch.lifecycle.ViewModelProviders;
+import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -25,8 +26,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.itrided.android.bakerstreet.R;
 import com.itrided.android.bakerstreet.data.cache.CacheDataSourceFactory;
 import com.itrided.android.bakerstreet.databinding.FragmentStepDetailsBinding;
+import com.squareup.picasso.Picasso;
 import com.stepstone.stepper.BlockingStep;
 import com.stepstone.stepper.StepperLayout;
 import com.stepstone.stepper.VerificationError;
@@ -63,6 +66,7 @@ public class StepFragment extends Fragment implements BlockingStep {
                              @Nullable Bundle savedInstanceState) {
         binding = FragmentStepDetailsBinding.inflate(inflater, container, false);
         position = getArguments().getInt(EXTRA_STEP_POSITION, 0);
+        loadImageIntoView(stepListViewModel.getStepsValue().get(position).getThumbnailURL());
 
         return binding.getRoot();
     }
@@ -95,7 +99,7 @@ public class StepFragment extends Fragment implements BlockingStep {
 
     @Override
     public void onNextClicked(StepperLayout.OnNextClickedCallback callback) {
-        stepListViewModel.setCurrentStep(position + 1);
+        stepListViewModel.setCurrentStepPosition(position + 1);
         releasePlayer();
         callback.goToNextStep();
     }
@@ -108,7 +112,7 @@ public class StepFragment extends Fragment implements BlockingStep {
 
     @Override
     public void onBackClicked(StepperLayout.OnBackClickedCallback callback) {
-        stepListViewModel.setCurrentStep(position - 1);
+        stepListViewModel.setCurrentStepPosition(position - 1);
         releasePlayer();
         callback.goToPrevStep();
     }
@@ -132,6 +136,19 @@ public class StepFragment extends Fragment implements BlockingStep {
     @Override
     public void onError(@NonNull VerificationError error) {
 
+    }
+
+    private void loadImageIntoView(@Nullable String imageUrl) {
+        if (imageUrl == null || imageUrl.isEmpty()) {
+            return;
+        }
+        final Context context = getContext();
+
+        Picasso.with(context)
+                .load(imageUrl)
+                .placeholder(R.drawable.ic_cake)
+                .error(R.drawable.ic_cake)
+                .into(binding.thumbnailIv);
     }
 
     private void initializePlayer() {
