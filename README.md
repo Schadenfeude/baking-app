@@ -11,7 +11,7 @@ An app that gives you a step-by-step explanation on how to cook certain foods.
  - [x] App conforms to common standards found in the Android Nanodegree General Project Guidelines.
 
 ### Components and Libraries
- - [ ] Application uses Master Detail Flow to display recipe steps and navigation between them.
+ - [x] Application uses Master Detail Flow to display recipe steps and navigation between them.
  - [x] Application uses ExoPlayer to display videos.
  - [x] Application properly initializes and releases video assets when appropriate.
  - [x] Application should properly retrieve media assets from the provided network links. 
